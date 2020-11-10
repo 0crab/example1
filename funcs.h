@@ -9,9 +9,12 @@ double get_rand_double(double L, double R){
 }
 
 void generate_a_vector(vector<double> & a){
-    for(size_t i =0; i< M ;i++){
+    for(size_t i =0; i< M-1 ;i++){
         a.push_back( rand() * 1.0 / RAND_MAX * (A_UPPER_BOUND - A_LOWER_BOUND) + A_LOWER_BOUND );
     }
+    double tol = 0.0;
+    for(auto & i : a) tol += i;
+    a.push_back(1.0-tol);
 }
 
 inline bool  in_domain_of_definition(Individual & in,Domain_of_Definition & domain_of_definition){
@@ -31,7 +34,7 @@ bool individual_better(Individual & A , Individual & B, Domain_of_Definition & d
     return A.adaptive_value > B.adaptive_value;
 }
 
-bool my_compare_func(Individual & x , Individual & y){
+bool my_compare_func(const Individual & x ,const  Individual & y){
     //TODO  not take constrain condition into consideration
     return x.adaptive_value > y.adaptive_value;
 }
