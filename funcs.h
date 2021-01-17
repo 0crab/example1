@@ -9,13 +9,17 @@ double get_rand_double(double L, double R){
 }
 
 void generate_a_vector(vector<double> & a){
+    double sum = 0,minbound = A_LOWER_BOUND,maxbound = A_UPPER_BOUND;
     for(size_t i =0; i< M-1 ;i++){
-        a.push_back( rand() * 1.0 / RAND_MAX * (A_UPPER_BOUND - A_LOWER_BOUND) + A_LOWER_BOUND );
+        a.push_back( rand() * 1.0 / RAND_MAX * (maxbound - minbound) + minbound );
+        sum += a.back();
+        maxbound = A_UPPER_BOUND < A_UPPER_BOUND-sum ? A_UPPER_BOUND : A_UPPER_BOUND - sum;
+        minbound = A_LOWER_BOUND > (A_LOWER_BOUND-sum) ? A_LOWER_BOUND : (A_LOWER_BOUND - sum);
     }
-    double tol = 0.0;
-    for(auto & i : a) tol += i;
-    a.push_back(1.0-tol);
+    a.push_back(1.0-sum);
 }
+
+
 
 inline bool  in_domain_of_definition(Individual & in,Domain_of_Definition & domain_of_definition){
     for(size_t i = 0; i < DIMENSION; i++ ){

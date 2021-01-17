@@ -7,6 +7,3 @@ link_libraries(pthread)
 
 add_executable(example1 main.cpp)
 
-add_executable(test test.cpp)
-
-#add_executable(tmp tmp.cpp)

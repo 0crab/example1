@@ -56,7 +56,6 @@ private:
     double get_rand_double(double L, double R){ return rand() * 1.0 / RAND_MAX * (R - L) + L;}
 
     double adaptive_func(vector<double> & X);
-
 };
 
 double Individual::adaptive_func(vector<double> & X){

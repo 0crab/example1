@@ -2,7 +2,7 @@
 #define EXAMPLE1_DEF_H
 #include <vector>
 
-#define DIMENSION 2
+#define DIMENSION 1
 
 #if (DIMENSION == 1)
 #define q 3
